@@ -1,7 +1,7 @@
-package org.example.email
+package org.example.service.email
 
 import org.example.config.ConfigEmail
-import org.example.tasks.CrawlerOlx
+import org.example.service.tasks.CrawlerOlx
 
 import javax.mail.*
 import javax.mail.internet.InternetAddress

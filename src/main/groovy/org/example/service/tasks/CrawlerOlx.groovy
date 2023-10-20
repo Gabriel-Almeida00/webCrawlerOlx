@@ -1,4 +1,4 @@
-package org.example.tasks
+package org.example.service.tasks
 
 
 import org.jsoup.nodes.Document

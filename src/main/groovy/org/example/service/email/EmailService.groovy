@@ -1,4 +1,4 @@
-package org.example.email
+package org.example.service.email
 
 class EmailService {
 
