@@ -127,7 +127,6 @@ class CrawlerOlx {
                 produtoDeMaiorValor = produto
             }
         }
-
         return produtoDeMaiorValor
     }
 
