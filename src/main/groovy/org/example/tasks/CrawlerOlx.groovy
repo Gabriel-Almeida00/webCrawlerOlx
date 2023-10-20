@@ -144,7 +144,5 @@ class CrawlerOlx {
         salvarListaDeProdutosEmCSV(caminhoArquivoCSV)
         encontrarProdutoDeMenorValor()
         encontrarProdutoDeMaiorValor()
-
     }
-
 }
