@@ -1,4 +1,4 @@
-package org.example.service.tasks
+package org.example.model
 
 class Produto {
     private String titulo

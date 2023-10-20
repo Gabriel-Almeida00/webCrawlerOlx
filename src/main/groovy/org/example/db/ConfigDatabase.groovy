@@ -4,21 +4,13 @@ import groovy.json.JsonException
 import groovy.json.JsonSlurper
 import org.example.exception.ConfigDataBaseException
 
-class ConfigDatabaseSingleton {
-    private static ConfigDatabaseSingleton instance
+class ConfigDatabase {
     private String urlDB
     private String userDB
     private String senhaDB
 
-    private ConfigDatabaseSingleton() {
+     ConfigDatabase() {
         loadConfigFromFile()
-    }
-
-    static ConfigDatabaseSingleton getInstance() {
-        if (instance == null) {
-            instance = new ConfigDatabaseSingleton()
-        }
-        return instance
     }
 
     private void loadConfigFromFile() throws ConfigDataBaseException {

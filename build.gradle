@@ -1,5 +1,14 @@
 plugins {
     id 'groovy'
+    id 'application'
+}
+
+application{
+    mainClassName = 'org.example.App'
+}
+
+run {
+    standardInput = System.in
 }
 
 group = 'org.example'

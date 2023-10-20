@@ -1,8 +1,8 @@
-package org.example.menu
+package org.example.view
 
-import org.example.menu.crawlerMenu.MenuCrawler
-import org.example.menu.emailMenu.MenuEmail
-import org.example.menu.emailMenu.MenuEnviaEmail
+import org.example.view.crawlerMenu.MenuCrawler
+import org.example.view.emailMenu.MenuEmail
+import org.example.view.emailMenu.MenuEnviaEmail
 
 class Menu {
     MenuCrawler menuCrawler

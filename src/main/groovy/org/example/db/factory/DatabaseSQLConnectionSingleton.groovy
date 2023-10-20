@@ -1,6 +1,6 @@
 package org.example.db.factory
 
-import org.example.db.ConfigDatabaseSingleton
+import org.example.db.ConfigDatabase
 import org.example.db.IDatabaseConnection
 import org.example.exception.DataBaseException
 
@@ -9,11 +9,19 @@ import java.sql.PreparedStatement
 import java.sql.ResultSet
 import java.sql.SQLException
 
-class DatabaseSQLConnection implements IDatabaseConnection{
-    private final ConfigDatabaseSingleton config
+class DatabaseSQLConnectionSingleton implements IDatabaseConnection{
+    private final ConfigDatabase config
+    private static DatabaseSQLConnectionSingleton instance
 
-    DatabaseSQLConnection(ConfigDatabaseSingleton config) {
+    private DatabaseSQLConnectionSingleton(ConfigDatabase config) {
         this.config = config
+    }
+
+    static DatabaseSQLConnectionSingleton getInstance(ConfigDatabase config) {
+        if (instance == null) {
+            instance = new DatabaseSQLConnectionSingleton(config)
+        }
+        return instance
     }
 
     @Override

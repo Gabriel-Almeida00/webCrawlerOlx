@@ -1,4 +1,4 @@
-package org.example.menu.emailMenu
+package org.example.view.emailMenu
 
 import org.example.config.ConfigEmail
 import org.example.service.email.EnviarEmail

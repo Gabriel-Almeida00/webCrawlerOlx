@@ -1,6 +1,6 @@
 package org.example.service.tasks
 
-
+import org.example.model.Produto
 import org.jsoup.nodes.Document
 
 import static groovyx.net.http.HttpBuilder.configure

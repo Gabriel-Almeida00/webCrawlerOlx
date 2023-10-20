@@ -1,7 +1,7 @@
-package org.example.menu.crawlerMenu
+package org.example.view.crawlerMenu
 
 import org.example.service.tasks.CrawlerOlx
-import org.example.service.tasks.Produto
+import org.example.model.Produto
 
 class MenuCrawler {
     CrawlerOlx crawlerOlx
