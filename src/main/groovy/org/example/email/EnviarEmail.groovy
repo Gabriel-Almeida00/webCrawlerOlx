@@ -1,6 +1,6 @@
 package org.example.email
 
-import org.example.config.Config
+import org.example.config.ConfigEmail
 import org.example.tasks.CrawlerOlx
 
 import javax.mail.*
@@ -10,15 +10,17 @@ import javax.mail.internet.MimeMessage
 import javax.mail.internet.MimeMultipart
 
 class EnviarEmail {
+    ConfigEmail configEmail
     CrawlerOlx crawlerOlx
 
-    EnviarEmail() {
+    EnviarEmail(ConfigEmail configEmail) {
         crawlerOlx = new CrawlerOlx()
+        this.configEmail = configEmail
     }
 
     void enviarEmail(String destinatario) {
-        String remetente = "gaamdal557@gmail.com"
-        String senha = Config.SENHA
+        String remetente = configEmail.getEmail()
+        String senha = configEmail.getSenha()
 
         Properties props = new Properties()
         props.setProperty("mail.smtp.host", "smtp.gmail.com")

@@ -1,12 +1,14 @@
 package org.example.menu.emailMenu
 
+import org.example.config.ConfigEmail
 import org.example.email.EnviarEmail
 
 class MenuEnviaEmail {
     EnviarEmail enviarEmail
 
     MenuEnviaEmail() {
-        enviarEmail = new EnviarEmail()
+        ConfigEmail configEmail = new ConfigEmail()
+        enviarEmail = new EnviarEmail(configEmail)
     }
 
     void exibir() {
