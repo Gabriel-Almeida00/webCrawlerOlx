@@ -1,63 +1,37 @@
 package org.example.service.email
 
-class EmailService {
+import org.example.dao.email.IEmailDao
+import org.example.model.Email
 
-    EmailService() {
+class EmailService implements IEmailService {
+    private IEmailDao emailDao
+
+    EmailService(IEmailDao emailDao) {
+        this.emailDao = emailDao
     }
 
-    void salvarEmails(String caminhoArquivo, List<String> emails) {
-        try {
-            File file = new File(caminhoArquivo)
-            file.parentFile.mkdirs()
-            file.withWriter { writer ->
-                emails.each { email ->
-                    writer.write(email + '\n')
-                }
-            }
-            println("Dados salvos em $caminhoArquivo")
-        } catch (IOException e) {
-            println("Erro ao salvar os dados: ${e.message}")
-        }
+    @Override
+    List<Email> listarEmails() {
+        return this.emailDao.listarEmails()
     }
 
-    List<String> lerEmails(String caminhoArquivo) {
-        List<String> emails = []
-        try {
-            File file = new File(caminhoArquivo)
-            if (file.exists()) {
-                emails = file.readLines()
-            } else {
-                println("O arquivo $caminhoArquivo não existe.")
-            }
-        } catch (IOException e) {
-            println("Erro ao ler o arquivo: ${e.message}")
-        }
-        return emails
+    @Override
+    Email pegarEmailPorId(Integer id) {
+        return this.emailDao.pegarEmailPorId(id)
     }
 
-    void adicionarEmails(String caminhoArquivo, List<String> novosEmails) {
-        List<String> emailsAtuais = lerEmails(caminhoArquivo)
-        emailsAtuais.addAll(novosEmails)
-        salvarEmails(caminhoArquivo, emailsAtuais)
-        println("E-mails adicionados com sucesso.")
+    @Override
+    void adicionarEmail(Email email) {
+        this.emailDao.adicionarEmail(email)
     }
 
-    void editarEmail(String caminhoArquivo, String emailAntigo, String emailNovo) {
-        List<String> emailsAtuais = lerEmails(caminhoArquivo)
-        if (emailsAtuais.contains(emailAntigo)) {
-            emailsAtuais.remove(emailAntigo)
-            emailsAtuais.add(emailNovo)
-            salvarEmails(caminhoArquivo, emailsAtuais)
-            println("E-mail editado com sucesso: $emailAntigo -> $emailNovo")
-        } else {
-            println("E-mail antigo não encontrado.")
-        }
+    @Override
+    void atualizarEmail(Email email) {
+        this.atualizarEmail(email)
     }
 
-    void removerEmails(String caminhoArquivo, String emailParaRemover) {
-        List<String> emailsAtuais = lerEmails(caminhoArquivo)
-        emailsAtuais.remove(emailParaRemover)
-        salvarEmails(caminhoArquivo, emailsAtuais)
-        println("E-mail removido com sucesso: $emailParaRemover")
+    @Override
+    void excluirEmail(Integer id) {
+        this.emailDao.excluirEmail(id)
     }
 }

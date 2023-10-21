@@ -8,4 +8,12 @@ class Email {
         this.id = id
         this.endereco = endereco
     }
+
+    Integer getId() {
+        return id
+    }
+
+    String getEndereco() {
+        return endereco
+    }
 }

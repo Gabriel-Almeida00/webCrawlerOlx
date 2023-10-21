@@ -1,6 +1,6 @@
 package org.example.service.email
 
-import org.example.config.ConfigEmail
+
 import org.example.service.tasks.CrawlerOlx
 
 import javax.mail.*
@@ -9,11 +9,11 @@ import javax.mail.internet.MimeBodyPart
 import javax.mail.internet.MimeMessage
 import javax.mail.internet.MimeMultipart
 
-class EnviarEmail {
+class EnviarEmailService {
     ConfigEmail configEmail
     CrawlerOlx crawlerOlx
 
-    EnviarEmail(ConfigEmail configEmail) {
+    EnviarEmailService(ConfigEmail configEmail) {
         crawlerOlx = new CrawlerOlx()
         this.configEmail = configEmail
     }
