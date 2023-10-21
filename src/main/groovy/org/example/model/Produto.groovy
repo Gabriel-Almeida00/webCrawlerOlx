@@ -1,43 +1,41 @@
 package org.example.model
 
 class Produto {
-    private String titulo
-    private String valor
-    private String endereco
-    private String url
+    Integer id
+    String titulo
+    BigDecimal preco
+    String url
+    Date dataAnuncio
+    String descricaoVendedor
+    Integer parcelasPossiveis
+    BigDecimal valorEntrega
+    Integer diasUteisEntrega
+    Localizacao localizacao
+    ProdutoDetalhes detalhes
 
-    Produto(String titulo, String valor, String endereco, String url) {
+    Produto(
+            Integer id,
+            String titulo,
+            BigDecimal preco,
+            String url,
+            Date dataAnuncio,
+            String descricaoVendedor,
+            Integer parcelasPossiveis,
+            BigDecimal valorEntrega,
+            Integer diasUteisEntrega,
+            Localizacao localizacao,
+            ProdutoDetalhes detalhes
+    ) {
+        this.id = id
         this.titulo = titulo
-        this.valor = valor
-        this.endereco = endereco
+        this.preco = preco
         this.url = url
+        this.dataAnuncio = dataAnuncio
+        this.descricaoVendedor = descricaoVendedor
+        this.parcelasPossiveis = parcelasPossiveis
+        this.valorEntrega = valorEntrega
+        this.diasUteisEntrega = diasUteisEntrega
+        this.localizacao = localizacao
+        this.detalhes = detalhes
     }
-
-    String getTitulo() {
-        return titulo
-    }
-
-    String getValor() {
-        return valor
-    }
-
-
-    String getEndereco() {
-        return endereco
-    }
-
-    String getUrl() {
-        return url
-    }
-
-
-    @Override
-    String toString() {
-        return "titulo: '" + titulo + '\'' + "\n" +
-                "valor:'" + valor + '\'' + "\n" +
-                "endereco: '" + endereco + '\'' + "\n" +
-                "url: '" + url + '\'' + "\n"
-
-    }
-
 }
