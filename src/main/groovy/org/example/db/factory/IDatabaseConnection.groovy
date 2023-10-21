@@ -1,4 +1,4 @@
-package org.example.db
+package org.example.db.factory
 
 import java.sql.Connection
 import java.sql.PreparedStatement

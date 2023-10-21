@@ -5,6 +5,7 @@ import groovy.json.JsonSlurper
 import org.example.exception.ConfigDataBaseException
 
 class ConfigDatabase {
+    private String dbType
     private String urlDB
     private String userDB
     private String senhaDB
@@ -19,6 +20,7 @@ class ConfigDatabase {
             JsonSlurper jsonSlurper = new JsonSlurper()
             Object configData = jsonSlurper.parse(configFile)
 
+            dbType = configData.dbType
             urlDB = configData.url
             userDB = configData.user
             senhaDB = configData.senha
@@ -31,6 +33,7 @@ class ConfigDatabase {
             throw new ConfigDataBaseException("Erro ao analisar o arquivo JSON de configuração", e)
         }
     }
+
 
     String getDbType() {
         return dbType
