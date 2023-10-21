@@ -1,6 +1,6 @@
 package org.example.db.factory
 
-import org.example.db.ConfigDatabase
+import org.example.config.ConfigDatabase
 
 class DatabaseSQLConnectionFactory implements IDatabaseConnectionFactory{
     private final ConfigDatabase config

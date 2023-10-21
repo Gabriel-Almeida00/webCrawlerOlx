@@ -1,6 +1,6 @@
 package org.example.db.factory
 
-import org.example.db.ConfigDatabase
+import org.example.config.ConfigDatabase
 import org.example.exception.DataBaseException
 
 import java.sql.Connection

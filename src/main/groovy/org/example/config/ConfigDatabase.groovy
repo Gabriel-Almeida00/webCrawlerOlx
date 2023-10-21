@@ -1,4 +1,4 @@
-package org.example.db
+package org.example.config
 
 import groovy.json.JsonException
 import groovy.json.JsonSlurper

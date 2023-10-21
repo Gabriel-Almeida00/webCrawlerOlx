@@ -1,6 +1,6 @@
 package org.example.view.emailMenu
 
-import org.example.service.email.ConfigEmail
+import org.example.config.ConfigEmail
 import org.example.service.email.EnviarEmailService
 
 class MenuEnviaEmail {

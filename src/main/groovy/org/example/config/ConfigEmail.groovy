@@ -1,4 +1,4 @@
-package org.example.service.email
+package org.example.config
 
 import groovy.json.JsonException
 import groovy.json.JsonSlurper
