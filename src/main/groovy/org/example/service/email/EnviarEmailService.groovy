@@ -13,26 +13,11 @@ class EnviarEmailService implements IEnviarEmailService {
     ConfigEmail configEmail
     CrawlerOlx crawlerOlx
 
-    EnviarEmailService(ConfigEmail configEmail) {
-        crawlerOlx = new CrawlerOlx()
-        this.configEmail = configEmail
-    }
-
     void enviarEmail(String destinatario) {
         String remetente = configEmail.getEmail()
         String senha = configEmail.getSenha()
 
-        Properties props = new Properties()
-        props.setProperty("mail.smtp.host", "smtp.gmail.com")
-        props.setProperty("mail.smtp.port", "587")
-        props.setProperty("mail.smtp.auth", "true")
-        props.setProperty("mail.smtp.starttls.enable", "true")
-
-        Session session = Session.getInstance(props, new Authenticator() {
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(remetente, senha)
-            }
-        })
+        Session session = configurarSessao(remetente, senha)
 
         try {
             MimeMessage message = new MimeMessage(session)
@@ -40,24 +25,12 @@ class EnviarEmailService implements IEnviarEmailService {
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(destinatario))
             message.setSubject("Relatório de Arquivos Baixados")
 
-            MimeBodyPart messageBodyPart = new MimeBodyPart()
-            messageBodyPart.setText("Olá,\n\nSegue o relatório com os melhores Preços do IPhone 11:  " +
-                    "\n\nProduto com maior Preço: " + crawlerOlx.encontrarProdutoDeMaiorValor() +
-                     "\n\nProduto com menor Preço: " + crawlerOlx.encontrarProdutoDeMenorValor())
+            MimeBodyPart messageBodyPart = criarMensagemCorpo()
 
             Multipart multipart = new MimeMultipart()
             multipart.addBodyPart(messageBodyPart)
 
-            ArrayList<String> caminhosDosArquivos = [
-                    'produtos/produtos.csv'
-
-            ]
-
-            caminhosDosArquivos.each { caminho ->
-                MimeBodyPart attachmentPart = new MimeBodyPart()
-                attachmentPart.attachFile(new File(caminho))
-                multipart.addBodyPart(attachmentPart)
-            }
+            adicionarAnexos(multipart)
 
             message.setContent(multipart)
 
@@ -65,6 +38,40 @@ class EnviarEmailService implements IEnviarEmailService {
             println("E-mail enviado para ${destinatario}")
         } catch (MessagingException e) {
             println("Erro ao enviar e-mail: ${e.message} ${e.printStackTrace()}")
+        }
+    }
+
+    private Session configurarSessao(String remetente, String senha) {
+        Properties props = new Properties()
+        props.setProperty("mail.smtp.host", "smtp.gmail.com")
+        props.setProperty("mail.smtp.port", "587")
+        props.setProperty("mail.smtp.auth", "true")
+        props.setProperty("mail.smtp.starttls.enable", "true")
+
+        return Session.getInstance(props, new Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(remetente, senha)
+            }
+        })
+    }
+
+    private MimeBodyPart criarMensagemCorpo() {
+        MimeBodyPart messageBodyPart = new MimeBodyPart()
+        messageBodyPart.setText("Olá,\n\nSegue o relatório com os melhores Preços do IPhone 11:  " +
+                "\n\nProduto com maior Preço: " + crawlerOlx.encontrarProdutoDeMaiorValor() +
+                "\n\nProduto com menor Preço: " + crawlerOlx.encontrarProdutoDeMenorValor())
+        return messageBodyPart
+    }
+
+    private void adicionarAnexos(Multipart multipart) {
+        ArrayList<String> caminhosDosArquivos = [
+                'produtos/produtos.csv'
+        ]
+
+        caminhosDosArquivos.each { caminho ->
+            MimeBodyPart attachmentPart = new MimeBodyPart()
+            attachmentPart.attachFile(new File(caminho))
+            multipart.addBodyPart(attachmentPart)
         }
     }
 }
