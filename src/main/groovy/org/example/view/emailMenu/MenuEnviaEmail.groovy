@@ -1,12 +1,14 @@
-package org.example.menu.emailMenu
+package org.example.view.emailMenu
 
-import org.example.email.EnviarEmail
+import org.example.config.ConfigEmail
+import org.example.service.email.EnviarEmailService
 
 class MenuEnviaEmail {
-    EnviarEmail enviarEmail
+    EnviarEmailService enviarEmail
 
     MenuEnviaEmail() {
-        enviarEmail = new EnviarEmail()
+        ConfigEmail configEmail = new ConfigEmail()
+        enviarEmail = new EnviarEmailService(configEmail)
     }
 
     void exibir() {

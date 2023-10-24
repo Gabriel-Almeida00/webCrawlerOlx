@@ -1,6 +1,6 @@
-package org.example.menu.emailMenu
+package org.example.view.emailMenu
 
-import org.example.email.EmailService
+import org.example.service.email.EmailService
 
 class MenuEmail {
     private EmailService emailService
